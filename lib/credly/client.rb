@@ -4,6 +4,7 @@ module Credly
   class Client
     include Credly::Actions::Badges
     include Credly::Actions::BadgeTemplates
+    include Credly::Actions::Organizations
     attr_reader :organization_id, :url
     attr_accessor :sandbox
 
