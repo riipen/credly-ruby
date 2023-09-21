@@ -13,6 +13,10 @@ module Credly
       end
     end
 
+    def auth_token=(auth_token)
+      @connection.set_basic_auth(auth_token, '')
+    end
+
     def delete(path, params = {})
       request(:delete, path, params)
     end

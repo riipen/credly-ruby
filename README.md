@@ -13,8 +13,9 @@ TODO
 
 ## Quick Start
 ```ruby
-client = Credly::Client.new(organization_id: 'id', auth_token: 'token')
-client.badges_get
+organization_id = 1
+client = Credly::Client.new(auth_token: 'token')
+client.badge_list(organization_id)
 ```
 
 The `Client` class also accepts a `version` parameter for the API version,
