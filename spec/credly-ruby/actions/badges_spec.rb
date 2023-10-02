@@ -23,7 +23,7 @@ RSpec.describe Credly::Actions::Badges do
 
   describe '#badge_issue' do
     it 'issues the correct POST request with body params' do
-      issue_params = {
+      body_params = {
         recipient_email: 'user1@example.com',
         badge_template_id: 'cfaf2910-ea5f-46f1-89a5-db525dad6e58',
         issued_at: '2014-04-01 09:41:00 -0500',
@@ -36,9 +36,9 @@ RSpec.describe Credly::Actions::Badges do
       }
 
       stub = stub_request(:post, "#{@client.url}/organizations/#{@organization_id}/badges")
-             .with(body: issue_params)
+             .with(body: body_params)
 
-      @client.badge_issue(@organization_id, issue_params)
+      @client.badge_issue(@organization_id, body_params)
 
       expect(stub).to have_been_requested
     end
@@ -61,15 +61,15 @@ RSpec.describe Credly::Actions::Badges do
       reason = 'Check bounced'
       suppress_notification = false
 
-      revoke_params = {
+      body_params = {
         reason: reason,
         suppress_revoke_notification_email: suppress_notification
       }
 
       stub = stub_request(:put, "#{@client.url}/organizations/#{@organization_id}/badges/#{badge_id}/revoke")
-             .with(body: revoke_params)
+             .with(body: body_params)
 
-      @client.badge_revoke(@organization_id, badge_id, revoke_params)
+      @client.badge_revoke(@organization_id, badge_id, body_params)
 
       expect(stub).to have_been_requested
     end
@@ -79,7 +79,7 @@ RSpec.describe Credly::Actions::Badges do
     it 'issues the correct POST request to replace a badge' do
       badge_id = 0
 
-      replace_params = {
+      body_params = {
         badge_template_id: '4008b9b1-1251-40a3-ba90-1bbc9720fc37',
         issued_at: '2014-04-01 09:41:00 -0500',
         issued_to: 'Firstname Lastname',
@@ -101,9 +101,9 @@ RSpec.describe Credly::Actions::Badges do
       }
 
       stub = stub_request(:post, "#{@client.url}/organizations/#{@organization_id}/badges/#{badge_id}/replace")
-             .with(body: replace_params)
+             .with(body: body_params)
 
-      @client.badge_replace(@organization_id, badge_id, replace_params)
+      @client.badge_replace(@organization_id, badge_id, body_params)
 
       expect(stub).to have_been_requested
     end

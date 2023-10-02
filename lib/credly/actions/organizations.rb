@@ -23,8 +23,8 @@ module Credly
         connection.get("organizations/#{organization_id}/authorization_tokens")
       end
 
-      def organization_event_list(organization_id, page = {})
-        connection.get("organizations/#{organization_id}/events", page)
+      def organization_event_list(organization_id, query_params = {})
+        connection.get("organizations/#{organization_id}/events", query_params)
       end
     end
   end

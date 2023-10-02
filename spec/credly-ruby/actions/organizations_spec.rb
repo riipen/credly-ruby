@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Credly::Actions::Badges do
+RSpec.describe Credly::Actions::Organizations do
   subject { @client }
 
   before do
@@ -32,7 +32,7 @@ RSpec.describe Credly::Actions::Badges do
 
   describe '#organization_update' do
     it 'issues the correct PUT request' do
-      update_params = {
+      body_params = {
         name: 'Example Organization',
         website_url: 'https://www.example.com',
         webhook_url: 'https://example.com/webhook_endpoint',
@@ -52,9 +52,9 @@ RSpec.describe Credly::Actions::Badges do
         hide_subscription: false
       }
 
-      stub = stub_request(:put, "#{@client.url}/organizations/#{@organization_id}").with(body: update_params)
+      stub = stub_request(:put, "#{@client.url}/organizations/#{@organization_id}").with(body: body_params)
 
-      @client.organization_update(@organization_id, update_params)
+      @client.organization_update(@organization_id, body_params)
 
       expect(stub).to have_been_requested
     end
