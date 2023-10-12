@@ -1,38 +1,58 @@
-# Ruby client for the Credly API
-Credly is a platform which allows users to create and share digital badges.
-This  API is designed to allow Ruby developers to interact with the Credly API programmatically.
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/riipen/credly-ruby/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/riipen/credly-ruby/tree/main)
 
-For reference, the Credly API documentation can be found here:
+# Credly Ruby
+
+An API client for the Credly REST API in ruby.
+
+Credly API documentation can be found here:
 
 https://www.credly.com/docs/
 
-## Install
-```
-TODO
+## Installation
+
+Add to your `Gemfile`:
+
+```ruby
+gem 'credly-ruby'
 ```
 
-## Quick Start
+Then `bundle install`.
+
+## Usage
+
+### Quick Start
+
 ```ruby
-organization_id = 1
-client = Credly::Client.new(auth_token: 'token')
+client = Credly::Client.new(auth_token: 'my_organization_token')
+
 client.badge_list(organization_id)
 ```
 
-The `Client` class also accepts a `version` parameter for the API version,
-and a `sandbox` boolean variable which specifies whether to use the production environment or the sandbox environment.
+The `Client` class also accepts the following options:
 
-The default value of `sandbox` is `false`, and the default `version` value is `v1`
-
-As a note, the Credly API only has version 1.0
-
-The production URLs are constructed as follows:
-
-`https://api.credly.com/v1/<endpoint_path>`
-
-The sandbox URLs are constructed as follows:
-
-`https://sandbox-api.credly.com/v1/<endpoint_path>`
+|Option|Type|Description|Default|
+|------|----|-----------|-------|
+|sandbox|boolean|Whether to use the sandbox environment.|false|
+|version|string|The API version to use.|v1|
 
 Additional request examples can be found in https://github.com/riipen/credly-ruby/blob/main/spec/credly-ruby/actions
 
-We will aim to make all API endpoints available from the client instance.
+### Errors
+
+Any error code returned by the Credly API will result in one of the following expections
+
+|Code|Exception|
+|----|---------|
+|400| Credly::BadRequest|
+|401| Credly::Unauthorized|
+|403| Credly::Forbidden|
+|404| Credly::NotFound|
+|410| Credly::Gone|
+|4xx| Credly::ClientError|
+|500| Credly::InternalServerError|
+|503| Credly::ServiceUnavailable|
+|5xx| Credly::ServerError|
+
+## License
+
+Copyright (C) 2023 Riipen. See [LICENSE](https://github.com/riipen/credly-ruby/blob/master/LICENSE.md) for details.
