@@ -1,3 +1,4 @@
+[![Gem Version](https://badge.fury.io/rb/credly-ruby.svg)](https://badge.fury.io/rb/credly-ruby)
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/riipen/credly-ruby/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/riipen/credly-ruby/tree/main)
 
 # Credly Ruby
