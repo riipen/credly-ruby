@@ -6,7 +6,7 @@ RSpec.describe Credly::Client do
   subject { @client }
 
   before do
-    @client = described_class.new(organization_id: 'id', auth_token: 'token')
+    @client = described_class.new(auth_token: 'token')
   end
 
   describe '.initialize' do
@@ -32,6 +32,14 @@ RSpec.describe Credly::Client do
       @client.sandbox = false
 
       expect(@client.base_url).to eq(Credly::Client::BASE_URL_P)
+    end
+  end
+
+  describe '#auth_token' do
+    it 'sets new auth_token' do
+      new_token = 'New Token'
+      @client.auth_token = new_token
+      expect(@client.auth_token).to eq(new_token)
     end
   end
 end

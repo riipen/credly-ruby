@@ -62,6 +62,22 @@ RSpec.describe Credly::Error do
       expect(@error).to be_a(Credly::NotFound)
     end
 
+    it 'returns Gone error with response status of 410' do
+      allow(@response).to receive(:status).and_return(410)
+
+      @error = described_class.from_response(@response)
+
+      expect(@error).to be_a(Credly::Gone)
+    end
+
+    it 'returns UnprocessableEntity error with response status of 422' do
+      allow(@response).to receive(:status).and_return(422)
+
+      @error = described_class.from_response(@response)
+
+      expect(@error).to be_a(Credly::UnprocessableEntity)
+    end
+
     it 'returns ClientError error with response status > 400 and < 500' do
       allow(@response).to receive(:status).and_return(405)
 
