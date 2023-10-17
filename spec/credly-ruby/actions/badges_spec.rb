@@ -6,8 +6,8 @@ RSpec.describe Credly::Actions::Badges do
   subject { @client }
 
   before do
-    @client = Credly::Client.new(auth_token: 'token')
-    @organization_id = 1
+    @client           = Credly::Client.new(auth_token: 'token')
+    @organization_id  = 1
   end
 
   describe '#badge_list' do

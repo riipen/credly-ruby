@@ -15,12 +15,12 @@ module Credly
     BASE_URL_S  = 'https://sandbox-api.credly.com'
 
     def initialize(auth_token:, version: 'v1', sandbox: false)
-      @base_url = sandbox ? BASE_URL_S : BASE_URL_P
-      @url = [@base_url, version].join('/')
-      @version = version
-      @auth_token = auth_token
-      @sandbox = sandbox
-      @connection = Connection.new(@url, @auth_token)
+      @base_url     = sandbox ? BASE_URL_S : BASE_URL_P
+      @url          = [@base_url, version].join('/')
+      @version      = version
+      @auth_token   = auth_token
+      @sandbox      = sandbox
+      @connection   = Connection.new(@url, @auth_token)
     end
 
     def connection
@@ -28,8 +28,8 @@ module Credly
     end
 
     def auth_token=(auth_token)
-      @auth_token = auth_token
-      @connection.auth_token = auth_token
+      @auth_token             = auth_token
+      @connection.auth_token  = auth_token
     end
 
     def base_url

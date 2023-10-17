@@ -24,6 +24,7 @@ module Credly
 
     def initialize(response = nil)
       @response = response
+
       super(build_error_message)
     end
 

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative 'lib/credly/version'
+require_relative 'lib/credly-ruby/version'
 
 Gem::Specification.new do |spec|
   spec.name = 'credly-ruby'
   spec.version = Credly::VERSION
-  spec.authors = ['James Ogilvie', 'Elijah Almacen', 'ChanSokphanavy Plean', 'Yahui Qin', 'Shuning Xu']
+  spec.authors = ['Jordan Ell']
 
   spec.summary = 'An API client for Credly in ruby.'
   spec.description = 'Access the Credly REST API.'
