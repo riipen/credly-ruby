@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    credly-ruby (0.1.0)
+    credly-ruby (0.2.0)
       faraday (~> 1.0, >= 1.0.0)
 
 GEM
