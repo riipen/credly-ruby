@@ -38,7 +38,9 @@ RSpec.describe Credly::Client do
   describe '#auth_token' do
     it 'sets new auth_token' do
       new_token = 'New Token'
+
       @client.auth_token = new_token
+
       expect(@client.auth_token).to eq(new_token)
     end
   end

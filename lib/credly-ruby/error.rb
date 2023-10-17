@@ -24,6 +24,7 @@ module Credly
 
     def initialize(response = nil)
       @response = response
+
       super(build_error_message)
     end
 
@@ -32,7 +33,7 @@ module Credly
     def build_error_message
       return nil if @response.nil?
 
-      @response.body
+      @response.body.dig('data', 'message')
     end
   end
 

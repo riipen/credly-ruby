@@ -5,11 +5,10 @@ require 'faraday'
 module Credly
   class Connection
     def initialize(url, auth_token)
-      @connection = Faraday.new(url: url) do |builder|
-        builder.request :json
-        builder.headers[:accept] = 'application/json'
-        builder.response :json
-        builder.request :authorization, :basic, auth_token, ''
+      @connection = Faraday.new(url: url) do |conn|
+        conn.request :json
+        conn.response :json
+        conn.request :basic_auth, auth_token, ''
       end
     end
 
@@ -34,7 +33,9 @@ module Credly
     end
 
     def request(method, path, params)
-      response = @connection.send(method, path, params)
+      response = @connection.public_send(method, path, params) do |request|
+        request.headers[:accept] = 'application/json'
+      end
 
       error = Error.from_response(response)
 
