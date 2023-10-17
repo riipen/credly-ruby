@@ -33,7 +33,7 @@ module Credly
     def build_error_message
       return nil if @response.nil?
 
-      @response.body
+      @response.body.dig('data', 'message')
     end
   end
 

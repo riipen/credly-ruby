@@ -38,6 +38,20 @@ RSpec.describe Credly::Error do
       expect(@error).to be_a(Credly::BadRequest)
     end
 
+    it 'formats error message correctly' do
+      allow(@response).to receive(:status).and_return(400)
+      allow(@response).to receive(:body).and_return({
+                                                      'data' =>
+                                                        {
+                                                          'message' => 'MESSAGE'
+                                                        }
+                                                    })
+
+      @error = described_class.from_response(@response)
+
+      expect(@error.message).to eq('MESSAGE')
+    end
+
     it 'returns Unauthorized error with response status of 401' do
       allow(@response).to receive(:status).and_return(401)
 
